@@ -2,7 +2,11 @@ from django.urls import path
 from Market.views import *
 
 urlpatterns = [
-    path('home', start),
+    path('', start),
+    path('logged', autorise),
     path('login', login_user),
-    path('start', main)
+    path('logout', do_logout),
+    path('ined', ined),
+    path('go_to_regist', reg),
+    path('regist', register)
 ]

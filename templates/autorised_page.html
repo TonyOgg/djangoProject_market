@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Autorised</title>
+    <link rel="stylesheet" href="static/css1/bootstrap.min.css">
+    <script src="static/js1/jquery-3.3.1.slim.min.js"></script>
+    <script src="static/js1/popper.min.js"></script>
+    <script src="static/js1/bootstrap.min.js"></script>
+    <style>
+        body {background: url("static/images/canvas_d_850.png");
+        background-size: 100%}
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row justify-content-center" style="margin-top: 150px">
+        <div class="col-4 bg-light">
+            <div style="padding-bottom: 10px; padding-top: 10px">
+                <p class="font-italic align-content-center text-center" style="color: #a71d2a">
+                    {{ try }}
+                </p>
+                <form method="post" action="login">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Username</label>
+                        <input type="text" name="username" class="form-control" id="formGroupExampleInput"
+                               placeholder="username">
+                    </div>
+                    <div>
+                        <label for="formGroupExampleInput2">Password</label>
+                        <input type="password" name="password" class="form-control" id="formGroupExampleInput2"
+                               placeholder="password">
+                    </div>
+                    <div class="text-center" style="padding-top: 20px">
+                        <button type="submit" class="btn btn-primary font-weight-bold"> Sign in </button>
+                        <a type="submit" class="btn btn-primary font-weight-bold" href="go_to_regist"> Registration </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

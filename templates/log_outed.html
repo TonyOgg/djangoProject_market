@@ -1,0 +1,13 @@
+{% extends "page.html" %}
+{% block content %}
+
+<form action="logout">
+    <button type="submit" class="btn btn-danger font-weight-bold bg-transparent">Log out</button>
+</form>
+
+{% endblock %}
+{% block name %}
+ <a class="btn">
+    Hello, {{ name }} !
+ </a>
+{% endblock %}
