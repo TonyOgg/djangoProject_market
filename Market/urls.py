@@ -8,5 +8,8 @@ urlpatterns = [
     path('logout', do_logout),
     path('ined', ined),
     path('go_to_regist', reg),
-    path('regist', register)
+    path('regist', register),
+    path('timer', ti),
+    path('logisin', logvalue),
+    path('emisin', emvalue)
 ]
