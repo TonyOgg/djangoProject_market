@@ -1,10 +1,15 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
-from Market.models import Client
 import re
 import time
+import unittest
+from Market.funcker import mocker, unders
+from unittest.mock import Mock
+
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.shortcuts import render
+
+from Market.models import Client
 
 
 def start(request):
@@ -113,3 +118,4 @@ def emvalue(request):
             return JsonResponse(response)
 
 # \w([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" regular for email
+

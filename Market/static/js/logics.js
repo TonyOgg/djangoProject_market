@@ -40,6 +40,8 @@ $(document).ready(function () {
                 if (response.message === 1) {
                     $('#warning').show();
                     $('#log').removeClass('border-success').addClass('border-danger');
+                    $('.un').remove();
+                    $('.nameIc').append('<span class="input-group-text un" style="color: red">X</span>');
                 }
                 else {
                     $('#warning').hide()
