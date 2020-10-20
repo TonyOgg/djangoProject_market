@@ -1,6 +1,7 @@
 import re
 import time
-import unittest
+import requests
+import json
 from Market.funcker import mocker, unders
 from unittest.mock import Mock
 
@@ -42,6 +43,20 @@ def do_logout(request):
         return HttpResponseRedirect('/')
     else:
         return HttpResponse('Ты не залогинен')
+
+# функция обмена валюты
+def get_currency():
+    response = requests.get(
+        'https://www.nbrb.by/API/ExRates/Rates/Dynamics/145?startDATE=2020-10-13&endDate=2020-10-20'
+    )
+    data = json.loads(response.text)
+    sum = 0
+    for cur in data:
+        sum += float(cur["Cur_OfficialRate"])
+    average = sum / 7
+    context = {
+        'item1': average
+    }
 
 
 def ined(request):
@@ -118,4 +133,6 @@ def emvalue(request):
             return JsonResponse(response)
 
 # \w([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" regular for email
+
+
 
