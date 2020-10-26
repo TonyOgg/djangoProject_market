@@ -1,17 +1,30 @@
 import re
+from datetime import datetime
 import time
 import requests
 import json
-from Market.funcker import mocker, unders
-from unittest.mock import Mock
+import random
 
 from django.contrib.auth import authenticate, login, logout
+from django.utils.translation import ugettext as _, activate
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 
-from Market.models import Client
+from Market.models import *
 
+
+# selector language
+
+def language_ru(request):
+    activate('ru')
+    return render(request,
+                  'log_outed.html')
+
+def language_en(request):
+    activate('en')
+    return render(request,
+                  'log_outed.html')
 
 def start(request):
     return render(request, 'log_in.html')
@@ -43,6 +56,7 @@ def do_logout(request):
         return HttpResponseRedirect('/')
     else:
         return HttpResponse('Ты не залогинен')
+
 
 # функция обмена валюты
 def get_currency():
@@ -134,5 +148,40 @@ def emvalue(request):
 
 # \w([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" regular for email
 
-
-
+# def exp():
+#     a = datetime.now()
+#     Speeds.objects.all().delete()
+#     b = (datetime.now() - a).total_seconds()
+#     print(b)
+#
+# def experiment():
+#     size = 1000000
+#     slice_size = 500
+#     Speeds.objects.all().delete()
+#     for _ in range(int(size / slice_size)):
+#         slice = []
+#         for _ in range(slice_size):
+#             slice.append(
+#                 Speeds(
+#                     speeds=str(
+#                         random.randint(10**70, 10**80)
+#                     )
+#                 )
+#             )
+#         Speeds.objects.bulk_create(slice, slice_size)
+#
+#     sum = 0
+#     for _ in range(100):
+#         start = datetime.now()
+#         list(Speeds.objects.filter(
+#             speeds=random.randint(
+#                 10**70, 10**80
+#             )
+#         ))
+#         delta = (datetime.now() - start).total_seconds()
+#         sum = sum + delta
+#     print("Время выполнения 100 запрсосов: " +
+#           str(sum) + ' секунд')
+#
+# experiment()
+# exp()

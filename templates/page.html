@@ -20,14 +20,27 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
+{% load i18n %}
     <div class="container-fluid">
         <div class="row">
             <nav class="nav fixed-top justify-content-end" style="background: rgba(0, 0, 0, 0.5)">
-                {% block name %}{% endblock %}
-                <a class="btn btn-light font-italic bg-transparent" style="color: #dee2e6" href="#!">Active</a>
-                <a class="btn btn-light font-italic bg-transparent" style="color: #dee2e6" href="#!">Link</a>
-                <a class="btn btn-light font-italic bg-transparent" style="color: #dee2e6" href="#!">Disabled</a>
-                {% block content %}{% endblock %}
+                {% if user.is_authenticated %}
+                    <a class="btn">
+                        Hello, {{ name }} !
+                    </a>
+                {%  endif %}
+                <a class="btn btn-light font-italic bg-transparent" style="color: #dee2e6" href="#!">{% trans "Active" %}</a>
+                <a class="btn btn-light font-italic bg-transparent" style="color: #dee2e6" href="#!">{% trans "Link" %}</a>
+                <a class="btn btn-light font-italic bg-transparent" style="color: #dee2e6" href="#!">{% trans "Disabled" %}</a>
+                {% if user.is_authenticated %}
+                     <form action="logout">
+                        <button type="submit" class="btn btn-light font-italic bg-transparent" style="color: #dee2e6">{% trans "Log out"%}</button>
+                     </form>
+                {% else %}
+                    <form action="logged">
+                        <button type="submit" class="btn btn-light font-italic bg-transparent" style="color: #dee2e6">Log in</button>
+                    </form>
+                {% endif %}
             </nav>
         </div>
         <div class="row" style="height: 800px">
@@ -102,7 +115,17 @@
                         <a href="#" style="color: aliceblue">Content use condition</a>
                     </li>
                     <li style="padding-bottom: 20px">
-                        <a href="#" style="color: aliceblue">About us</a>
+                        <a href="#" style="color: aliceblue">{% trans "About us" %}</a>
+                    </li>
+                    <li>
+                        <div class="text-center" style="padding-top: 10px">
+                            <form action="select_rus">
+                                <button type="submit" class="btn btn-light" id="lang1"> rus </button>
+                            </form>
+                            <form action="select_en">
+                                <button type="submit" class="btn btn-light" id="lang2"> en </button>
+                            </form>
+                        </div>
                     </li>
                     <li style="padding-bottom: 20px">
                         <a href="#" style="color: aliceblue">Contacts</a>

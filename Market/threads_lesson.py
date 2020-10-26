@@ -31,4 +31,4 @@ def experiment():
         thread_number = thread_number + 1
     print(time.time() - st)
 
-experiment()
+# experiment()

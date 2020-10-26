@@ -11,5 +11,7 @@ urlpatterns = [
     path('regist', register),
     path('timer', ti),
     path('logisin', logvalue),
-    path('emisin', emvalue)
+    path('emisin', emvalue),
+    path('select_rus', language_ru),
+    path('select_en', language_en)
 ]

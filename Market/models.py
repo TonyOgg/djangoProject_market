@@ -13,3 +13,9 @@ class Car(models.Model):
 class Client(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     address = models.CharField('Address', max_length=100)
+
+class Speeds(models.Model):
+    speeds = models.CharField(
+        max_length=100,
+        db_index=True
+    )

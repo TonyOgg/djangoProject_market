@@ -1,13 +1,14 @@
 {% extends "page.html" %}
 {% block content %}
+{% load i18n %}
 
 <form action="logout">
-    <button type="submit" class="btn btn-light font-italic bg-transparent" style="color: #dee2e6">Log out</button>
+    <button type="submit" class="btn btn-light font-italic bg-transparent" style="color: #dee2e6">{% trans "Log out"%}</button>
 </form>
 
 {% endblock %}
 {% block name %}
- <a class="btn">
+<a class="btn">
     Hello, {{ name }} !
- </a>
+</a>
 {% endblock %}
