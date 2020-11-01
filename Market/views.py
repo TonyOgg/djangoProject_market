@@ -5,6 +5,7 @@ import requests
 import json
 import random
 
+from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.utils.translation import ugettext as _, activate
 from django.contrib.auth.models import User
@@ -14,25 +15,43 @@ from django.shortcuts import render
 from Market.models import *
 
 
-# selector language
+# select language
+
+from django.utils import translation
+def language_en(request):
+    cur_language = translation.get_language()
+    print(cur_language)
+    translation.activate('en')
+    cur_language = translation.get_language()
+    print(cur_language)
+    return render(request,
+                  'start_page_support.html')
+
+
 
 def language_ru(request):
-    activate('ru')
+   # activate('ru')
+    cur_language = translation.get_language()
+    print(cur_language)
+    translation.activate('ru')
+    cur_language = translation.get_language()
+    print(cur_language)
     return render(request,
-                  'log_outed.html')
+                  'start_page_support.html')
 
-def language_en(request):
-    activate('en')
-    return render(request,
-                  'log_outed.html')
+
+# start page entering
 
 def start(request):
-    return render(request, 'log_in.html')
+    # with translation.override('en'):
+        return render(request, 'start_page_support.html')
 
+# autorisation
 
 def autorise(request):
     return render(request, 'autorised_page.html')
 
+# do loginning
 
 def login_user(request):
     context = {
@@ -47,10 +66,11 @@ def login_user(request):
         return render(request, 'autorised_page.html', context)
     else:
         login(request, user)
-        return HttpResponseRedirect('ined')
+        return HttpResponseRedirect('/')
 
+# do_logouting
 
-def do_logout(request):
+def logout_user(request):
     if request.user.is_authenticated:
         logout(request)
         return HttpResponseRedirect('/')
@@ -73,21 +93,14 @@ def get_currency():
     }
 
 
-def ined(request):
-    context = {
-        'name': request.user.username
-    }
-    if request.user.is_authenticated:
-        return render(request, 'log_outed.html', context)
-    else:
-        return HttpResponseRedirect('/')
+# registration_page
 
-
-def reg(request):
+def registration(request):
     return render(request, 'registration_page.html')
 
+# registration user
 
-def register(request):
+def registrate_user(request):
     context = {
         'error': 'Username or e-mail address is invalid!'
     }
@@ -105,7 +118,7 @@ def register(request):
         client = Client(user=user, address='Minsk')
         client.save()
         login(request, user)
-        return HttpResponseRedirect('ined')
+        return HttpResponseRedirect('/')
     else:
         return render(request, 'registration_page.html', context)
 
@@ -145,6 +158,11 @@ def emvalue(request):
         else:
             response['message'] = 0
             return JsonResponse(response)
+
+# search new car
+
+def search_new_car(request):
+    return render(request, 'new_car_page.html')
 
 # \w([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" regular for email
 
