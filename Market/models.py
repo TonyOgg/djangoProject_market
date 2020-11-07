@@ -17,7 +17,7 @@ class Car(models.Model):
     transmission = models.CharField(max_length=25)
     drive_unit = models.CharField(max_length=30, default='Forward')
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    is_new = models.BooleanField(default=True)
+    is_new = models.BooleanField(default=False)
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

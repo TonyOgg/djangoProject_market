@@ -9,75 +9,20 @@
     <div class="row justify-content-center">
         <div class="col-5">
             <span>{{ warning }}</span>
-            <form method="post">
+            <form enctype="multipart/form-data" method="post" action="adding">
                 {% csrf_token %}
                 {{ form.name }}
                 {{ form.base }}
-                <div class="form-group">
-                    <div class="input-group-prepend">
-                        <input type="text" placeholder="Brand" class="form-control text-center">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group-prepend">
-                        <input type="text" placeholder="Model" class="form-control text-center">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group-prepend">
-                        <input type="text" placeholder="Car base" class="form-control text-center">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group-prepend">
-                        <input type="text" placeholder="Mileage" class="form-control text-center">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group-prepend">
-                        <input type="text" placeholder="Year" class="form-control text-center">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group-prepend">
-                        <input type="text" placeholder="Engine type" class="form-control text-center">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group-prepend">
-                        <input type="text" placeholder="Engine size" class="form-control text-center">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group-prepend">
-                        <input type="text" placeholder="Transmission" class="form-control text-center">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group-prepend">
-                        <input type="text" placeholder="Drive unit" class="form-control text-center">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group-prepend">
-                        <input type="text" placeholder="Price" class="form-control text-center">
-                    </div>
-                </div>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                      <input type="checkbox" aria-label="Checkbox for following text input">
-                    </div>
-                  </div>
-                  <div class="alert alert-secondary" role="alert">
-                      New car
-                  </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group-prepend">
-                        <input type="text" placeholder="Photo" class="form-control text-center">
-                    </div>
-                </div>
+                {{ form.car_body }}
+                {{ form.mileage }}
+                {{ form.year }}
+                {{ form.engine_type }}
+                {{ form.engine_size }}
+                {{ form.transmission }}
+                {{ form.drive_unit }}
+                {{ form.price }}
+                {{ form.is_new }}
+                {{ form.photo }}
                 <div class="row justify-content-center">
                     <button type="submit" class="btn btn-success">Add+</button>
                 </div>

@@ -163,26 +163,36 @@ def emvalue(request):
 # search new car
 
 def search_new_car(request):
-    car = Car.objects.filter(is_new=True)
+    car = Car.objects.filter(is_new=True).order_by('created')
     return render(request, 'new_car_page.html', {'car': car})
 
 def to_add_auto(request):
-    warning = ''
+    # warning = ''
+    # if request.method == 'POST':
+    #     form = CarForm(request.POST, request.FILES)
+    #     if form.is_valid():
+    #         form.save()
+    #         return HttpResponseRedirect("/successfuly_added")
+    #     else:
+    #         warning = "Some of dates is wrong. Try again"
+    # form = CarForm
+    # context = {
+    #     'form': form,
+    #     'warning': warning
+    # }
     form = CarForm
-    context = {
-        'form': form,
-        'warning': warning
-    }
-    return render(request, 'adding_automobile.html', context)
+    return render(request, 'adding_automobile.html', {'form': form})
 
 def adding(request):
+    warning = ''
     if request.method == 'POST':
-        form = CarForm(request.POST)
+        form = CarForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            HttpResponseRedirect("/successfuly_added")
+            return HttpResponseRedirect("/successfuly_added")
         else:
             warning = "Some of dates is wrong. Try again"
+    form = CarForm
     context = {
         'form': form,
         'warning': warning
