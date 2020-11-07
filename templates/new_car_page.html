@@ -185,56 +185,32 @@
             <button class="btn btn-secondary" style="background: rgba(128, 128, 128, 1); width: 65px">Sort</button>
         </div>
     </div>
-    <div class="cards">
-        <div class="card cars_card">
-            <div class="card-body">
-                <h4 class="card-title">Card title</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">
-                    Some quick example text to build on the card title
-                    and make up the bulk of the card's content.
-                </p>
-                <a href="#!" class="card-link">Card link</a>
-                <a href="#!" class="card-link">Another link</a>
+    {% if car %}
+        {% for posit in car %}
+            <div class="cards">
+                <div class="card cars_card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ posit.name.name }}</h4>
+                        <img src="{{ posit.photo.url }}" width="300" height="150">
+                        <p class="card-text">
+                            Some quick example text to build on the card title
+                            and make up the bulk of the card's content.
+                        </p>
+                        <a href="#!" class="card-link">Card link</a>
+                        <a href="#!" class="card-link">Another link</a>
+                    </div>
+                </div>
             </div>
+        {% endfor %}
+    {% else %}
+        <div class="row justify-content-center" style="margin-top: 200px">
+            <h1>We're sorry, but we haven't new cars in our catalog</h1>
         </div>
-        <div class="card cars_card">
-            <div class="card-body">
-                <h4 class="card-title">Card title</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">
-                    Some quick example text to build on the card title
-                    and make up the bulk of the card's content.
-                </p>
-                <a href="#!" class="card-link">Card link</a>
-                <a href="#!" class="card-link">Another link</a>
-            </div>
+        <div class="row justify-content-center">
+            <img src="static/images/icons/sad_page_default.svg" alt="sad" width="100" height="100"
+                style="margin-bottom: 100px">
         </div>
-        <div class="card cars_card">
-            <div class="card-body">
-                <h4 class="card-title">Card title</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">
-                    Some quick example text to build on the card title
-                    and make up the bulk of the card's content.
-                </p>
-                <a href="#!" class="card-link">Card link</a>
-                <a href="#!" class="card-link">Another link</a>
-            </div>
-        </div>
-        <div class="card cars_card">
-            <div class="card-body">
-                <h4 class="card-title">Card title</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">
-                    Some quick example text to build on the card title
-                    and make up the bulk of the card's content.
-                </p>
-                <a href="#!" class="card-link">Card link</a>
-                <a href="#!" class="card-link">Another link</a>
-            </div>
-        </div>
-    </div>
+    {% endif %}
     <div class="row" style="height: 30px">
     </div>
 </body>

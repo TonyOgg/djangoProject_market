@@ -10,6 +10,7 @@ class Car(models.Model):
     name = models.OneToOneField(Cars, on_delete=models.CASCADE)
     base = models.CharField(max_length=40)
     car_body = models.CharField(max_length=40)
+    mileage = models.PositiveIntegerField(default=0)
     year = models.DateField(default=0)
     engine_type = models.CharField(max_length=25, default=None)
     engine_size = models.FloatField(default=0)

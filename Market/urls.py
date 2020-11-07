@@ -14,5 +14,6 @@ urlpatterns = [
     path('emisin', emvalue),
     path('select_rus', language_ru),
     path('select_en', language_en),
-    path('new_cars', search_new_car)
+    path('new_cars', search_new_car),
+    path('add', to_add_auto, name="add_auto"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -6,6 +6,7 @@ import json
 import random
 
 from django.conf import settings
+from Market.forms import CarForm
 from django.contrib.auth import authenticate, login, logout
 from django.utils.translation import ugettext as _, activate
 from django.contrib.auth.models import User
@@ -162,7 +163,31 @@ def emvalue(request):
 # search new car
 
 def search_new_car(request):
-    return render(request, 'new_car_page.html')
+    car = Car.objects.filter(is_new=True)
+    return render(request, 'new_car_page.html', {'car': car})
+
+def to_add_auto(request):
+    warning = ''
+    form = CarForm
+    context = {
+        'form': form,
+        'warning': warning
+    }
+    return render(request, 'adding_automobile.html', context)
+
+def adding(request):
+    if request.method == 'POST':
+        form = CarForm(request.POST)
+        if form.is_valid():
+            form.save()
+            HttpResponseRedirect("/successfuly_added")
+        else:
+            warning = "Some of dates is wrong. Try again"
+    context = {
+        'form': form,
+        'warning': warning
+    }
+    return render(request, 'adding_automobile.html', context)
 
 # \w([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" regular for email
 
