@@ -6,6 +6,9 @@ class Cars(models.Model):
     description = models.TextField(blank=True)
     photo = models.ImageField(upload_to='images/', default=None)
 
+    def __str__(self):
+        return self.name
+
 class Car(models.Model):
     name = models.ForeignKey(Cars, on_delete=models.CASCADE)
     base = models.CharField(max_length=40)
@@ -22,6 +25,7 @@ class Car(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     photo = models.ImageField(upload_to='images/', default=None)
+
 
 
 class Spares(models.Model):

@@ -1,0 +1,68 @@
+{% extends "page.html" %}
+{% block content %}
+
+{% load i18n %}
+
+<head>
+    <style type="text/css">
+        .dropdown-toggle {
+            margin-left: 0px;
+            margin-right: 0px;
+            width: 190px;
+            font-style: italic;
+            background: rgba(128, 128, 128, 1);
+        }
+        .list-group-item  {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border: 0px;
+            font-style: italic;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+        }
+        .row {
+            flex-direction: row;
+        }
+        .cars_card {
+            width: 350px;
+            height: 350px;
+            margin: 10px;
+            display: inline-block;
+        }
+        .cards {
+            display: flex;
+            justify-content: center;
+        }
+        body {background: url("static/images/search_page-back.jpg");
+        background-size: 100%}
+    </style>
+</head>
+<body>
+    <div class="row" style="height: 39px">
+    </div>
+    <div class="row list-group">
+        <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 1)" href="used_cars">{% trans "Used cars"%}</a>
+        <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 1)" href="new_cars">{% trans "New cars"%}</a>
+        <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 1)" href="#">{% trans "Spare parts"%}</a>
+    </div>
+    </div>
+        <div class="row justify-content-center">
+            <div class="cards">
+                <a href="car_description"><div class="card cars_card">
+                    <div class="card-body" style="width: 400px; height: 400px" >
+                        <h4 class="card-title">{{ car.name.name }}</h4>
+                        <img src="{% if car.photo %}{{ car.photo.url }}{% else %}lol{% endif %}" width="300" height="200">
+                        <p class="card-text">{{ el1.base }} {{ el1.car_body }}</p>
+                        <a>{{ car.year.year }} year</a>
+                        <a class="alert alert-warning">{{ car.price }} $</a>
+                        <a style="position: relative; left: 20px">{{ car.mileage }} km</a>
+                    </div>
+                </div></a>
+            </div>
+        </div>
+    <div class="row" style="height: 30px">
+    </div>
+</body>
+
+{% endblock %}

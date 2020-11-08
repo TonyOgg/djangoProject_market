@@ -43,8 +43,8 @@
     <div class="row" style="height: 39px">
     </div>
     <div class="row list-group">
-        <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 0.3)" href="used_cars">{% trans "Used cars"%}</a>
-        <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 1)" href="new_cars">{% trans "New cars"%}</a>
+        <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 1)" href="used_cars">{% trans "Used cars"%}</a>
+        <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 0.3)" href="new_cars">{% trans "New cars"%}</a>
         <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 0.3)" href="#">{% trans "Spare parts"%}</a>
     </div>
     <div class="row">
@@ -188,11 +188,11 @@
         </div>
     </div>
     {% if car %}
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" style="background: image()">
             {% for el1 in car %}
                 <div class="cards">
-                    <a href="car_description"><div class="card cars_card">
-                        <div class="card-body" style="width: 400px; height: 400px" >
+                    <div class="card cars_card">
+                        <div class="card-body" style="width: 400px; height: 400px">
                             <h4 class="card-title">{{ el1.name.name }}</h4>
                             <img src="{{ el1.photo.url }}" width="300" height="200">
                             <p class="card-text">{{ el1.base }} {{ el1.car_body }}</p>
@@ -200,7 +200,7 @@
                             <a class="alert alert-warning">{{ el1.price }} $</a>
                             <a style="position: relative; left: 20px">{{ el1.mileage }} km</a>
                         </div>
-                    </div></a>
+                    </div>
                 </div>
             {% endfor %}
         </div>

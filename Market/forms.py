@@ -1,21 +1,24 @@
 import datetime
 from Market.models import Car, Cars
-from django.forms import ModelForm, TextInput, DateInput, CheckboxInput, FileInput, NumberInput, ModelChoiceField
+from django.forms import Textarea, ModelForm, TextInput, DateInput, CheckboxInput, FileInput, NumberInput, ModelChoiceField
 
 
 class CarForm(ModelForm):
 
-    name = ModelChoiceField(queryset=Cars.objects.values_list("name", flat=True), empty_label="Brand")
+    name = ModelChoiceField(queryset=Cars.objects.all(), empty_label="Brand")
 
     class Meta:
         model = Car
-        fields = ["base", "car_body", "mileage", "year", "engine_type", "engine_size", "transmission",
+        fields = ["name", "base", "car_body", "mileage", "year", "engine_type", "engine_size", "transmission",
                   "drive_unit", "price", "is_new", "photo"]
         Car.updated = datetime.datetime
         Car.created = datetime.datetime
         Car.available = True
 
         widgets = {
+            "name": Textarea(attrs={
+                'class': "form-control"
+            }),
             "base": TextInput(attrs={
                 'class': "form-control",
                 "placeholder": "Model"

@@ -160,26 +160,26 @@ def emvalue(request):
             response['message'] = 0
             return JsonResponse(response)
 
-# search new car
+# search new cars
 
 def search_new_car(request):
-    car = Car.objects.filter(is_new=True).order_by('created')
+    car = Car.objects.filter(is_new=True).order_by('-created')
     return render(request, 'new_car_page.html', {'car': car})
 
+# search used cars
+
+def search_used_car(request):
+    car = Car.objects.filter(is_new=False).order_by('-created')
+    return render(request, 'used_car_page.html', {'car': car})
+
+def to_car_desc(request):
+    try:
+        car = Car.objects.get(pk="name_id")
+    except car.DoesNotExist:
+        raise HttpResponseRedirect("/")
+    return render(request, 'description_car.html', {'car': car})
+
 def to_add_auto(request):
-    # warning = ''
-    # if request.method == 'POST':
-    #     form = CarForm(request.POST, request.FILES)
-    #     if form.is_valid():
-    #         form.save()
-    #         return HttpResponseRedirect("/successfuly_added")
-    #     else:
-    #         warning = "Some of dates is wrong. Try again"
-    # form = CarForm
-    # context = {
-    #     'form': form,
-    #     'warning': warning
-    # }
     form = CarForm
     return render(request, 'adding_automobile.html', {'form': form})
 
@@ -201,40 +201,3 @@ def adding(request):
 
 # \w([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" regular for email
 
-# def exp():
-#     a = datetime.now()
-#     Speeds.objects.all().delete()
-#     b = (datetime.now() - a).total_seconds()
-#     print(b)
-#
-# def experiment():
-#     size = 1000000
-#     slice_size = 500
-#     Speeds.objects.all().delete()
-#     for _ in range(int(size / slice_size)):
-#         slice = []
-#         for _ in range(slice_size):
-#             slice.append(
-#                 Speeds(
-#                     speeds=str(
-#                         random.randint(10**70, 10**80)
-#                     )
-#                 )
-#             )
-#         Speeds.objects.bulk_create(slice, slice_size)
-#
-#     sum = 0
-#     for _ in range(100):
-#         start = datetime.now()
-#         list(Speeds.objects.filter(
-#             speeds=random.randint(
-#                 10**70, 10**80
-#             )
-#         ))
-#         delta = (datetime.now() - start).total_seconds()
-#         sum = sum + delta
-#     print("Время выполнения 100 запрсосов: " +
-#           str(sum) + ' секунд')
-#
-# experiment()
-# exp()
