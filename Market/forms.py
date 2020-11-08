@@ -1,22 +1,21 @@
 import datetime
-from Market.models import Car
-from django.forms import ModelForm, TextInput, DateInput, CheckboxInput, FileInput, NumberInput
+from Market.models import Car, Cars
+from django.forms import ModelForm, TextInput, DateInput, CheckboxInput, FileInput, NumberInput, ModelChoiceField
 
 
 class CarForm(ModelForm):
 
+    name = ModelChoiceField(queryset=Cars.objects.values_list("name", flat=True), empty_label="Brand")
+
     class Meta:
         model = Car
-        fields = ["name", "base", "car_body", "mileage", "year", "engine_type", "engine_size", "transmission",
+        fields = ["base", "car_body", "mileage", "year", "engine_type", "engine_size", "transmission",
                   "drive_unit", "price", "is_new", "photo"]
         Car.updated = datetime.datetime
         Car.created = datetime.datetime
         Car.available = True
+
         widgets = {
-            "name": TextInput(attrs={
-                'class': "form-control",
-                "placeholder": "Brand"
-            }),
             "base": TextInput(attrs={
                 'class': "form-control",
                 "placeholder": "Model"
@@ -26,11 +25,11 @@ class CarForm(ModelForm):
                 "placeholder": "Base"
             }),
             "mileage": NumberInput(attrs={
-                # 'class': "form-control",
+                'class': "form-control",
                 "placeholder": "Mileage"
             }),
             "year": DateInput(attrs={
-                # 'class': "form-control",
+                'class': "form-control",
                 "placeholder": "Date of creating"
             }),
             "engine_type": TextInput(attrs={
@@ -38,7 +37,7 @@ class CarForm(ModelForm):
                 "placeholder": "Engine"
             }),
             "engine_size": NumberInput(attrs={
-                # 'class': "form-control",
+                'class': "form-control",
                 "placeholder": "Size of engine"
             }),
             "transmission": TextInput(attrs={
@@ -50,16 +49,16 @@ class CarForm(ModelForm):
                 "placeholder": "Drive unit"
             }),
             "price": NumberInput(attrs={
-                # 'class': "form-control",
+                'class': "form-control",
                 "placeholder": "Price"
             }),
             "is_new": CheckboxInput(attrs={
-                # 'class': "input-group-text",
+                'class': "input-group-text",
                 'type': 'checkbox',
                 "placeholder": "New car"
             }),
             "photo": FileInput(attrs={
-                # 'class': "form-control",
+                'class': "form-control",
                 'type': "file",
                 "placeholder": "Photo"
             }),
