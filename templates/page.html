@@ -3,7 +3,8 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Homepage</title>
+{#    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">#}
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -25,24 +26,27 @@
         <div class="row">
             <nav class="nav fixed-top" style="background: rgba(0, 0, 0, 0.5)">
                 <div class="col-3 justify-content-start">
-                        <form action="" method="get">
-                            <div class="input-group">
-                                <input class="form-control" style="opacity: 60%" name="global_search" type="text"
-                                       placeholder="{% trans 'I search' %}" size="8">
-                                <div class="input-group-append">
-                                    <button class="btn btn-secondary" type="button">{% trans "Search"%}</button>
-                                </div>
-                            </div>
-                        </form>
+                    <a href="/"><img src="static/images/icons/home_icon_1.png" alt="start_page_logo" width="30px"
+                                     height="30px"></a>
+{#                    <a style="color: aliceblue; margin-left: 10px">USD/BYN - {{ item1 }}</a>#}
+{#                        <form action="" method="get">#}
+{#                            <div class="input-group">#}
+{#                                <input class="form-control" style="opacity: 60%" name="global_search" type="text"#}
+{#                                       placeholder="{% trans 'I search' %}" size="8">#}
+{#                                <div class="input-group-append">#}
+{#                                    <button class="btn btn-secondary" type="button">{% trans "Search"%}</button>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </form>#}
                 </div>
                 <div class="col-8 d-flex justify-content-center">
                     {% if user.is_authenticated %}
                     <a class="btn font-italic" style="color: #dee2e6">
                         {% trans "Hello" %}, {{ user.username }} !
                     </a>
+                    <a class="btn btn-light font-italic bg-transparent" style="color: #dee2e6" href="{% url "add_auto" %}">{% trans "Add"%}</a>
                     {%  endif %}
                     <a class="btn btn-light font-italic bg-transparent" style="color: #dee2e6" href="#!">{% trans "News"%}</a>
-                    <a class="btn btn-light font-italic bg-transparent" style="color: #dee2e6" href="{% url "add_auto" %}">{% trans "Add"%}</a>
                     {% if user.is_authenticated %}
                         <a class="btn btn-light font-italic bg-transparent" style="color: #dee2e6" href="#!">{% trans "Garage"%}</a>
                     {%  endif %}
@@ -62,17 +66,9 @@
         </div>
         {% block content %}{% endblock %}
     </div>
-{#    <div>#}
-{#        <ul>#}
-{#            <li>#}
-{#                Средний белорусского рубля к доллару за последние 7 дней - {{ item1 }}#}
-{#            </li>#}
-{#        </ul>#}
-{#    </div>#}
 </body>
 <footer class="card" style="border-width: 0px">
-    <img class="card-img" src="/static/images/footer_animation.gif" alt="Card" height="210px" style="opacity: 80%;
-        border-radius: 0px">
+    <img class="card-img" src="/static/images/footer_animation.gif" alt="Card" height="210px" style="border-radius: 0px">
     <div class="card-img-overlay">
         <div class="row">
             <div class="col-4">

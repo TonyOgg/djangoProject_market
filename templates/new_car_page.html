@@ -47,13 +47,15 @@
         <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 1)" href="new_cars">{% trans "New cars"%}</a>
         <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 0.3)" href="#">{% trans "Spare parts"%}</a>
     </div>
-    <div class="row">
+        <form action="new_cars" method="get">
+            <div class="row">
         <div class="dropdown open">
             <button class="btn btn-secondary dropdown-toggle"
                     type="button" id="dropdownMenu1" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                 {% trans "Brand" %}
             </button>
+            <input hidden="true" name="brand" id="brand_input">
             <div>
                 <ul tabindex="0" class="dropdown-menu" id="dropdown1">
                     <li class="dropdown-item">Audi</li>
@@ -105,7 +107,7 @@
         <div class="dropdown open">
             <button class="btn btn-secondary dropdown-toggle"
                     type="button" id="dropdownMenu4" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                    aria-haspopup="true" aria-expanded="false" name="terry">
                 {% trans "Engine type" %}
             </button>
             <div>
@@ -184,14 +186,16 @@
             </div>
         </div>
         <div>
-            <button class="btn btn-secondary" style="background: rgba(128, 128, 128, 1); width: 100%">Sort</button>
+            <button type="submit" class="btn btn-secondary" style="background: rgba(128, 128, 128, 1); width: 100%">Sort</button>
         </div>
+            </div>
+        </form>
     </div>
     {% if car %}
         <div class="row justify-content-center">
             {% for el1 in car %}
                 <div class="cards">
-                    <a href="car_description"><div class="card cars_card">
+                    <a href="car_description?carId={{ el1.id }}"><div class="card cars_card">
                         <div class="card-body" style="width: 400px; height: 400px" >
                             <h4 class="card-title">{{ el1.name.name }}</h4>
                             <img src="{{ el1.photo.url }}" width="300" height="200">
@@ -214,7 +218,6 @@
         </div>
     {% endif %}
     <div class="row" style="height: 30px">
-    </div>
 </body>
 
 {% endblock %}

@@ -56,7 +56,7 @@ def autorise(request):
 
 def login_user(request):
     context = {
-        'try': 'Username or password is wrong. Try again.',
+        'try': 'Username or password is wrong! Try again!',
         'name': request.user.username
     }
     user = authenticate(
@@ -80,18 +80,20 @@ def logout_user(request):
 
 
 # функция обмена валюты
-def get_currency():
-    response = requests.get(
-        'https://www.nbrb.by/API/ExRates/Rates/Dynamics/145?startDATE=2020-10-13&endDate=2020-10-20'
-    )
-    data = json.loads(response.text)
-    sum = 0
-    for cur in data:
-        sum += float(cur["Cur_OfficialRate"])
-    average = sum / 7
-    context = {
-        'item1': average
-    }
+
+# def get_currency():
+#     response = requests.get(
+#         'https://www.nbrb.by/API/ExRates/Rates/Dynamics/145?startDATE=2020-10-13&endDate=2020-10-20'
+#     )
+#     data = json.loads(response.text)
+#     sum = 0
+#     for cur in data:
+#         sum += float(cur["Cur_OfficialRate"])
+#     average = sum / 7
+#     context = {
+#         'item1': average
+#     }
+#
 
 
 # registration_page
@@ -163,7 +165,8 @@ def emvalue(request):
 # search new cars
 
 def search_new_car(request):
-    car = Car.objects.filter(is_new=True).order_by('-created')
+    filt = Car.objects
+    car = filt.filter(is_new=True).order_by('-created')
     return render(request, 'new_car_page.html', {'car': car})
 
 # search used cars
@@ -173,10 +176,7 @@ def search_used_car(request):
     return render(request, 'used_car_page.html', {'car': car})
 
 def to_car_desc(request):
-    try:
-        car = Car.objects.get(pk="name_id")
-    except car.DoesNotExist:
-        raise HttpResponseRedirect("/")
+    car = Car.objects.get(id=request.GET.get('carId'))
     return render(request, 'description_car.html', {'car': car})
 
 def to_add_auto(request):

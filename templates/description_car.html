@@ -47,18 +47,29 @@
         <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 1)" href="#">{% trans "Spare parts"%}</a>
     </div>
     </div>
-        <div class="row justify-content-center">
-            <div class="cards">
-                <a href="car_description"><div class="card cars_card">
-                    <div class="card-body" style="width: 400px; height: 400px" >
-                        <h4 class="card-title">{{ car.name.name }}</h4>
-                        <img src="{% if car.photo %}{{ car.photo.url }}{% else %}lol{% endif %}" width="300" height="200">
-                        <p class="card-text">{{ el1.base }} {{ el1.car_body }}</p>
-                        <a>{{ car.year.year }} year</a>
-                        <a class="alert alert-warning">{{ car.price }} $</a>
-                        <a style="position: relative; left: 20px">{{ car.mileage }} km</a>
-                    </div>
-                </div></a>
+        <div class="row justify-content-center" style="margin-top: 30px">
+            <div class="card" style="width: 600px; height: auto">
+              <img class="card-img-top" src="{{ car.photo.url }}" alt="Card image cap">
+              <div class="card-body" style="background: rgba(128, 128, 128, 0.6)">
+                <h4 class="card-title">{{ car.name.name }} {{ car.base }} {{ car.car_body }}</h4>
+                  <div class="row" style="margin-left: 0px">
+                      <h5>Mileage: {{ car.mileage }} km</h5>
+                      <h5 style="margin-left: 25px">Date of manufacture: {{ car.year }}</h5>
+                  </div>
+                  <div class="row" style="margin-left: 0px">
+                      <h6>Engine: {{ car.engine_size }} l {{ car.engine_type }} </h6>
+                      <h6 style="margin-left: 45px">Transmission: {{ car.transmission }}</h6>
+                      <h6 style="margin-left: 45px">Unit: {{ car.drive_unit }}</h6>
+                  </div>
+                  <div class="row" style="margin-left: 0px">
+                      <a class="btn btn-secondary" style="height: 35px">Price: {{ car.price }} $</a>
+                      {% if car.is_new %}
+                      <a class="alert alert-success" style="margin-left: 300px">New car!</a>
+                      {% else %}
+                      <a class="alert alert-warning" style="margin-left: 300px">Used car!</a>
+                      {% endif %}
+                  </div>
+              </div>
             </div>
         </div>
     <div class="row" style="height: 30px">
