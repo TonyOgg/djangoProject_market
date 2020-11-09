@@ -18,7 +18,7 @@ class Car(models.Model):
     engine_type = models.CharField(max_length=25, default=None)
     engine_size = models.FloatField(default=0)
     transmission = models.CharField(max_length=25)
-    drive_unit = models.CharField(max_length=30, default='Forward')
+    drive_unit = models.CharField(max_length=30)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     is_new = models.BooleanField(default=False)
     available = models.BooleanField(default=True)
