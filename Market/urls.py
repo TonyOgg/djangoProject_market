@@ -17,5 +17,6 @@ urlpatterns = [
     path('cars', search_car),
     path('add', to_add_auto, name="add_auto"),
     path('adding', adding, name="adding"),
-    path('car_description', to_car_desc)
+    path('car_description', to_car_desc),
+    path('finish', to_finish)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

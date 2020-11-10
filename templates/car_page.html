@@ -1,9 +1,12 @@
 {% extends "page.html" %}
 {% block content %}
 
+    <title>Cars page</title>
+
 {% load i18n %}
 
 <head>
+
     <script src="/static/js/logics_new_car_page.js"></script>
     <style type="text/css">
         .dropdown-toggle {
@@ -79,8 +82,8 @@
             </button>
             <div>
                 <ul tabindex="0" class="dropdown-menu" id="dropdown2">
-                    <li class="dropdown-item">A</li>
-                    <li class="dropdown-item">B</li>
+                    <li class="dropdown-item">A4</li>
+                    <li class="dropdown-item">A6</li>
                 </ul>
             </div>
         </div>
@@ -194,13 +197,13 @@
             </div>
         </div>
         <div>
-            <button type="submit" class="btn btn-secondary" style="background: rgba(128, 128, 128, 1); width: 100%">Sort</button>
+            <button type="submit" class="btn btn-secondary" style="background: rgba(128, 128, 128, 1); width: 100%"><a href="finish" style="color: aliceblue">Sort</a></button>
         </div>
             </div>
         </form>
     </div>
     {% if car %}
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" style="margin-top: 40px">
             {% for el1 in car %}
                 <div class="cards">
                     <a href="car_description?carId={{ el1.id }}"><div class="card cars_card">
@@ -210,7 +213,8 @@
                             <p class="card-text">{{ el1.base }} {{ el1.car_body }}</p>
                             <a>{{ el1.year.year }} year</a>
                             <a class="alert alert-warning">{{ el1.price }} $</a>
-                            <a style="position: relative; left: 20px">{{ el1.mileage }} km</a>
+                            <a style="position: relative; left: 20px">{{ el1.mileage }} km</a><p></p>
+                            <a style="margin: 0px">Date of creating: {{ el1.created }}</a>
                         </div>
                     </div></a>
                 </div>

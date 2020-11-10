@@ -203,5 +203,8 @@ def adding(request):
     }
     return render(request, 'adding_automobile.html', context)
 
+def to_finish(request):
+    return render(request, 'Thats all.html')
+
 # \w([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" regular for email
 
