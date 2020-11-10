@@ -1,34 +1,44 @@
 {% extends "page.html" %}
 {% block content %}
 
+    <style>
+    body {
+        background: url("static/images/search_page-back.jpg");
+        background-size: 100%;
+    }
+    </style>
+
 {% load i18n %}
 
-    <div class="row justify-content-center" style="margin-top: 50px">
-        <h1>{% trans "Adding new auto" %}</h1>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-5">
-            <span>{{ warning }}</span>
-            <form enctype="multipart/form-data" method="post" action="adding">
-                {% csrf_token %}
-                {{ form.name }}
-                {{ form.base }}
-                {{ form.car_body }}
-                {{ form.mileage }}
-                {{ form.year }}
-                {{ form.engine_type }}
-                {{ form.engine_size }}
-                {{ form.transmission }}
-                {{ form.drive_unit }}
-                {{ form.price }}
-                {{ form.is_new }}
-                {{ form.photo }}
-                <div class="row justify-content-center">
-                    <button type="submit" class="btn btn-success">Add+</button>
-                </div>
-            </form>
+    <body>
+        <div class="row justify-content-center" style="margin-top: 50px">
+            <h1 style="color: aliceblue">{% trans "Adding auto" %}</h1>
         </div>
-    </div>
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <span>{{ warning }}</span>
+                <form enctype="multipart/form-data" method="post" action="adding">
+                    {% csrf_token %}
+                    {{ form.name }}
+                    {{ form.base }}
+                    {{ form.car_body }}
+                    {{ form.mileage }}
+                    {{ form.year }}
+                    {{ form.engine_type }}
+                    {{ form.engine_size }}
+                    {{ form.transmission }}
+                    {{ form.drive_unit }}
+                    {{ form.price }}
+                    <span class="btn btn-light" style="width: 100%">{{ form.is_new }} <span>new car?</span></span>
+                    {{ form.photo }}
+                    <div class="row justify-content-center">
+                        <button type="submit" class="btn btn-secondary" style="margin: 10px; width: 200px">Add+</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+
 
 
 {% endblock %}

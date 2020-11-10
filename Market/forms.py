@@ -5,7 +5,8 @@ from django.forms import Textarea, ModelForm, TextInput, DateInput, CheckboxInpu
 
 class CarForm(ModelForm):
 
-    name = ModelChoiceField(queryset=Cars.objects.all(), empty_label="Brand")
+    name = ModelChoiceField(queryset=Cars.objects.all(), empty_label="Brand",
+                            widget=TextInput(attrs={"placeholder": "Brand", "class": "form-control"}))
 
     class Meta:
         model = Car
@@ -16,9 +17,6 @@ class CarForm(ModelForm):
         Car.available = True
 
         widgets = {
-            "name": Textarea(attrs={
-                'class': "form-control"
-            }),
             "base": TextInput(attrs={
                 'class': "form-control",
                 "placeholder": "Model"
@@ -29,7 +27,8 @@ class CarForm(ModelForm):
             }),
             "mileage": NumberInput(attrs={
                 'class': "form-control",
-                "placeholder": "Mileage"
+                "placeholder": "Mileage",
+                "step": "10000"
             }),
             "year": DateInput(attrs={
                 'class': "form-control",
@@ -58,7 +57,8 @@ class CarForm(ModelForm):
             "is_new": CheckboxInput(attrs={
                 'class': "input-group-text",
                 'type': 'checkbox',
-                "placeholder": "New car"
+                "placeholder": "New car",
+                "style": "width:30px; height:30px; margin: 0px"
             }),
             "photo": FileInput(attrs={
                 'class': "form-control",
