@@ -5,11 +5,9 @@ import requests
 import json
 import random
 
-from django.conf import settings
 from Market.forms import CarForm
 from django.contrib.auth import authenticate, login, logout
 from django.utils.translation import ugettext as _, activate
-from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 
@@ -80,7 +78,7 @@ def logout_user(request):
 
 
 # функция обмена валюты
-
+#
 # def get_currency():
 #     response = requests.get(
 #         'https://www.nbrb.by/API/ExRates/Rates/Dynamics/145?startDATE=2020-10-13&endDate=2020-10-20'
@@ -93,7 +91,7 @@ def logout_user(request):
 #     context = {
 #         'item1': average
 #     }
-#
+
 
 
 # registration_page
