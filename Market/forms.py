@@ -1,12 +1,12 @@
 import datetime
 from Market.models import Car, Cars
-from django.forms import Textarea, ModelForm, TextInput, DateInput, CheckboxInput, FileInput, NumberInput, ModelChoiceField
+from django.forms import Textarea, ModelForm, TextInput, DateInput, CheckboxInput, FileInput, NumberInput, \
+    Select, ModelChoiceField
 
 
 class CarForm(ModelForm):
 
-    name = ModelChoiceField(queryset=Cars.objects.all(), empty_label="Brand",
-                            widget=TextInput(attrs={"placeholder": "Brand", "class": "form-control"}))
+    name = ModelChoiceField(queryset=Cars.objects.all(), empty_label="Brand", widget=Select(attrs={'class':'form-control'}))
 
     class Meta:
         model = Car
@@ -17,6 +17,9 @@ class CarForm(ModelForm):
         Car.available = True
 
         widgets = {
+            "name": Textarea(attrs={
+                'class': "form-control"
+            }),
             "base": TextInput(attrs={
                 'class': "form-control",
                 "placeholder": "Model"
@@ -63,7 +66,7 @@ class CarForm(ModelForm):
             "photo": FileInput(attrs={
                 'class': "form-control",
                 'type': "file",
-                "placeholder": "Photo"
+                "style": "width: 100%",
             }),
 
         }

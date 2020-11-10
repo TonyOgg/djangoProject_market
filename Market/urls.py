@@ -14,8 +14,7 @@ urlpatterns = [
     path('emisin', emvalue),
     path('select_rus', language_ru),
     path('select_en', language_en),
-    path('new_cars', search_new_car),
-    path('used_cars', search_used_car),
+    path('cars', search_car),
     path('add', to_add_auto, name="add_auto"),
     path('adding', adding, name="adding"),
     path('car_description', to_car_desc)

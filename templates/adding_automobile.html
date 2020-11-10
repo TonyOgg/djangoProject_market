@@ -14,8 +14,9 @@
         <div class="row justify-content-center" style="margin-top: 50px">
             <h1 style="color: aliceblue">{% trans "Adding auto" %}</h1>
         </div>
+        {% if not succsesful %}
         <div class="row justify-content-center">
-            <div class="col-5">
+            <div class="col-3">
                 <span>{{ warning }}</span>
                 <form enctype="multipart/form-data" method="post" action="adding">
                     {% csrf_token %}
@@ -29,7 +30,16 @@
                     {{ form.transmission }}
                     {{ form.drive_unit }}
                     {{ form.price }}
-                    <span class="btn btn-light" style="width: 100%">{{ form.is_new }} <span>new car?</span></span>
+                    <span class="btn btn-light" style="width: 100%">
+                        <div class="row">
+                            <div class="col-1">
+                                {{ form.is_new }}
+                            </div>
+                            <div class="col-4 justify-content-start">
+                                <span>new car?</span>
+                            </div>
+                        </div>
+                    </span>
                     {{ form.photo }}
                     <div class="row justify-content-center">
                         <button type="submit" class="btn btn-secondary" style="margin: 10px; width: 200px">Add+</button>
@@ -38,6 +48,11 @@
             </div>
         </div>
     </body>
+    {% else %}
+    <div class="row justify-content-center" style="margin: 220px">
+        <h2 style="color: white">{{ succsesful }}</h2>
+    </div>
+    {% endif %}
 
 
 

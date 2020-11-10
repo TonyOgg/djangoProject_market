@@ -162,34 +162,39 @@ def emvalue(request):
             response['message'] = 0
             return JsonResponse(response)
 
-# search new cars
+# search cars
 
-def search_new_car(request):
-    filt = Car.objects
-    car = filt.filter(is_new=True).order_by('-created')
-    return render(request, 'new_car_page.html', {'car': car})
+def search_car(request):
+    if request.GET.get('ID'):
+        car = Car.objects.filter(is_new=True).order_by('-created')
+        return render(request, 'car_page.html', {'car': car, "old": 2})
+    elif request.GET.get('PD'):
+        car = Car.objects.filter(is_new=False).order_by('-created')
+        return render(request, 'car_page.html', {'car': car, "old": 1})
 
-# search used cars
-
-def search_used_car(request):
-    car = Car.objects.filter(is_new=False).order_by('-created')
-    return render(request, 'used_car_page.html', {'car': car})
+# car description
 
 def to_car_desc(request):
     car = Car.objects.get(id=request.GET.get('carId'))
     return render(request, 'description_car.html', {'car': car})
 
+
 def to_add_auto(request):
     form = CarForm
     return render(request, 'adding_automobile.html', {'form': form})
 
+# adding auto in catalog
+
 def adding(request):
     warning = ''
+    context = {
+        'succsesful': "Your car has been successfuly added in our catalog!"
+    }
     if request.method == 'POST':
         form = CarForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect("/successfuly_added")
+            return render(request, 'adding_automobile.html', context)
         else:
             warning = "Some of dates is wrong. Try again"
     form = CarForm

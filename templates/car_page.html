@@ -42,11 +42,19 @@
 <body>
     <div class="row" style="height: 39px">
     </div>
+    {% if old == 1 %}
     <div class="row list-group">
-        <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 0.3)" href="used_cars">{% trans "Used cars"%}</a>
-        <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 1)" href="new_cars">{% trans "New cars"%}</a>
+        <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 1)" href="cars?PD=old">{% trans "Used cars"%}</a>
+        <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 0.3)" href="cars?ID=new">{% trans "New cars"%}</a>
         <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 0.3)" href="#">{% trans "Spare parts"%}</a>
     </div>
+    {% else %}
+    <div class="row list-group">
+        <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 0.3)" href="cars?PD=old">{% trans "Used cars"%}</a>
+        <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 1)" href="cars?ID=new">{% trans "New cars"%}</a>
+        <a class="col-4 list-group-item" style="background: rgba(128, 128, 128, 0.3)" href="#">{% trans "Spare parts"%}</a>
+    </div>
+    {% endif %}
         <form action="new_cars" method="get">
             <div class="row">
         <div class="dropdown open">

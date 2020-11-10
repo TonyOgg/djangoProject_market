@@ -3,7 +3,6 @@ $(document).ready(function () {
 
     $("#dropdownMenu1").text($(this).text());
     $("#dropdownMenu1").val($(this).text());
-    document.getElementById('brand_input').value = (this).text();
   });
     $("#dropdown2 li").click(function(){
 
