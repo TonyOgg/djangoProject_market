@@ -5,6 +5,7 @@ import requests
 import json
 import random
 
+from django.conf import settings
 from Market.forms import CarForm
 from django.contrib.auth import authenticate, login, logout
 from django.utils.translation import ugettext as _, activate
